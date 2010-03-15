@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "sinatra-i18n"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{a barebones sinatra i18n extension}
+    gem.description = %Q{allows you to have config/locales/en.yml and the t helper}
     gem.email = "cyx.ucron@gmail.com"
     gem.homepage = "http://github.com/sinefunc/sinatra-i18n"
     gem.authors = ["Cyril David"]
