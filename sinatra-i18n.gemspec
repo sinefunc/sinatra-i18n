@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sinatra-i18n}
-  s.version = ""
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Cyril David"]
   s.date = %q{2010-03-16}
-  s.description = %q{a barebones i18n sinatra extension}
+  s.description = %q{TODO: longer description of your gem}
   s.email = %q{cyx.ucron@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -22,7 +22,9 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.md",
      "Rakefile",
+     "VERSION",
      "lib/sinatra/i18n.rb",
+     "sinatra-i18n.gemspec",
      "test/helper.rb",
      "test/test_sinatra-i18n.rb"
   ]
@@ -30,7 +32,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{a barebones i18n sinatra extension}
+  s.summary = %q{TODO: one-line summary of your gem}
   s.test_files = [
     "test/helper.rb",
      "test/test_sinatra-i18n.rb"
