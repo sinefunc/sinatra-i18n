@@ -15,7 +15,7 @@ module Sinatra
         app.set :locales, File.join(app.root, 'config', 'locales', 'en.yml')
       end
 
-      ::I18n.backend.load_translations(app.locales)
+      ::I18n.backend.load_translations(*app.locales)
     end
   end
 end
