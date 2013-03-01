@@ -2,9 +2,9 @@
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
-Gem::Specification.new 'sinatra', '0.1.0' do |s|
+Gem::Specification.new 'sinatra', '0.2.0' do |s|
   s.summary          = "A barebones Sinatra i18n extension"
-  s.description      = "ease internationalisation (i18n) of Sinatra"
+  s.description      = "Ease internationalisation (i18n) with Sinatra"
   s.authors          = [ "Stephane D'Alu", "Cyril David" ]
   s.email            = %q{cyx.ucron@gmail.com}
   s.homepage         = %q{http://github.com/sinefunc/sinatra-i18n}

@@ -1,4 +1,5 @@
-[![Build Status](https://secure.travis-ci.org/sdalu/sinatra-i18n.png)](http://travis-ci.org/sdalu/sinatra-i18n)
+[![Build Status](https://travis-ci.org/sdalu/sinatra-i18n.png)](https://travis-ci.org/sdalu/sinatra-i18n)
+
 
 sinatra-i18n
 ============

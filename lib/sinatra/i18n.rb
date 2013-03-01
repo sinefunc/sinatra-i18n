@@ -37,4 +37,6 @@ module Sinatra
       app.set :locales, {}
     end
   end
+
+  register I18n
 end
