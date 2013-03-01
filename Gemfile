@@ -7,5 +7,5 @@ gemspec
 gem 'rake'
 
 platforms :ruby_18 do
-  gem rdoc
+  gem 'rdoc'
 end
