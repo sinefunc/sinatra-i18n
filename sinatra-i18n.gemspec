@@ -9,21 +9,19 @@ Gem::Specification.new 'sinatra', '0.2.0' do |s|
   s.email            = %q{cyx.ucron@gmail.com}
   s.homepage         = %q{http://github.com/sinefunc/sinatra-i18n}
 # s.files            = `git ls-files`.split("\n") - %w[.gitignore .travis.yml]
-  s.files            = [ '.document'
-		         '.gitignore'
-			 '.travis.yml'
-			 'Gemfile'
-			 'LICENSE'
-			 'README.md'
-			 'Rakefile'
-			 'VERSION'
-			 'lib/sinatra/i18n.rb'
-			 'sinatra-i18n.gemspec'
-			 'test/helper.rb'
-			 'test/locales/en.yml'
-			 'test/locales/fr.yml'
-			 'test/sinatra-i18n_test.rb'
-			 'test/views/welcome.erb'
+  s.files            = [ '.document',
+			 'Gemfile',
+			 'LICENSE',
+			 'README.md',
+			 'Rakefile',
+			 'VERSION',
+			 'lib/sinatra/i18n.rb',
+			 'sinatra-i18n.gemspec',
+			 'test/helper.rb',
+			 'test/locales/en.yml',
+			 'test/locales/fr.yml',
+			 'test/sinatra-i18n_test.rb',
+			 'test/views/welcome.erb',
 			 'test/views/welcome.fr.erb'
 		       ]
   s.test_files       = s.files.select { |p| p =~ /^test\/.*_test.rb/ }
