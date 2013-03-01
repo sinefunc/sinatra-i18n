@@ -6,12 +6,10 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "sinatra-i18n"
     gem.summary = %Q{a barebones sinatra i18n extension}
-    gem.description = %Q{allows you to have config/locales/en.yml and the t helper}
+    gem.description = %Q{ease internationalisation (i18n) in Sinatra}
     gem.email = "cyx.ucron@gmail.com"
     gem.homepage = "http://github.com/sinefunc/sinatra-i18n"
-    gem.authors = ["Cyril David"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.authors = ["Cyril David", "Stephane D'Alu"]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -42,7 +40,7 @@ task :test => :check_dependencies
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
