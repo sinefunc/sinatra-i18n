@@ -1,14 +1,32 @@
-require 'rubygems'
-require 'rake'
-
-
+require 'rake/clean'
 require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+
+
+# SPECS ===============================================================
+
+task :test do
+  ENV['LANG'] = 'C'
+  ENV.delete 'LC_CTYPE'
 end
 
+Rake::TestTask.new(:test) do |t|
+  t.test_files = FileList['test/*_test.rb']
+  t.ruby_opts = ['-rubygems'] if defined? Gem
+  t.ruby_opts << '-I.'
+end
+
+Rake::TestTask.new(:"test:core") do |t|
+  core_tests = %w[base delegator encoding extensions filter
+helpers mapped_error middleware radius rdoc
+readme request response result route_added_hook
+routing server settings sinatra static templates]
+  t.test_files = core_tests.map {|n| "test/#{n}_test.rb"}
+  t.ruby_opts = ["-rubygems"] if defined? Gem
+  t.ruby_opts << "-I."
+end
+
+
+#==================================================
 
 task :default => :test
 
