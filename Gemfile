@@ -6,6 +6,6 @@ gemspec
 
 gem 'rake'
 
-plateforms :ruby_18 do
+platforms :ruby_18 do
   gem rdoc
 end
