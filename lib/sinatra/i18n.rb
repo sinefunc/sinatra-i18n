@@ -23,7 +23,7 @@ module Sinatra
                     else
                         []
                     end
-          lookup  = settings.locales.lookup ||
+          lookup  = settings.locales[:lookup] ||
                     lambda { |path, locale| "#{name}.#{locale}" }
           locales.each { |locale|
               super(views, lookup.call(name, locale), engine, &block) }
