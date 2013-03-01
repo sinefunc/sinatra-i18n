@@ -12,14 +12,14 @@ for Sinatra::Base types.
 On your sinatra application:
 
     require 'sinatra/i18n'
-
+    
     # Optional requirements
     require 'rack/contrib' 
     require 'i18n/backend/fallbacks'
-
+    
     # Register the extension
     register Sinatra::I18n
-
+    
     # Use browser preference to set locale
     #  (requires: rack-contrib)
     use Rack::Locale
@@ -27,22 +27,22 @@ On your sinatra application:
     # Use URL information to set locale
     before '/:locale/*' do
         I18n.locale       =       params[:locale]
-	request.path_info = '/' + params[:splat]
+        request.path_info = '/' + params[:splat]
     end
-
+    
     # Use hostname information to set locale
     #  (assume hostname is as: locale.my-website.com)
     before '/:locale/*' do
         if (locale = request.host.split('.')[0]) != 'www'
-	    I18n.locale = locale
-	end
+            I18n.locale = locale
+        end
     end    
-
+    
     # Configure I18n translations
     # Loading translation files with modified backend
     #  (requires: i18n/backend/fallbacks)
     configure
-	I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+        I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
         I18n.load_path, Dir[File.join(settings.root, 'locales', '*.yml')]
         I18n.backend.load_translations
     end
