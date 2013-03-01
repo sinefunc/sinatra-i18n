@@ -1,53 +1,31 @@
-require 'rubygems'
-require 'rake'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "sinatra-i18n"
-    gem.summary = %Q{a barebones sinatra i18n extension}
-    gem.description = %Q{allows you to have config/locales/en.yml and the t helper}
-    gem.email = "cyx.ucron@gmail.com"
-    gem.homepage = "http://github.com/sinefunc/sinatra-i18n"
-    gem.authors = ["Cyril David"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
-
+# -*- ruby -*-
+require 'rake/clean'
 require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
+require 'rdoc/task'
 
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
-  end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-  end
-end
+version = File.exist?('VERSION') ? File.read('VERSION') : "?.?.?"
 
-task :test => :check_dependencies
 
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
+task :test do
+  ENV['LANG'] = 'C'
+  ENV.delete 'LC_CTYPE'
+end
+
+
+Rake::TestTask.new(:test) do |t|
+  t.test_files = FileList['test/*_test.rb']
+  t.ruby_opts = ['-rubygems'] if defined? Gem
+  t.ruby_opts << '-I.'
+end
+
+
+
+Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "sinatra-i18n #{version}"
+  rdoc.title    = "sinatra-i18n #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
