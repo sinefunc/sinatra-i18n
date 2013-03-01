@@ -6,35 +6,66 @@ Basic plugin to use internationalization on your sinatra application
 How to use
 ----------
 
+This works for both the case of a Classic sinatra application and also
+for Sinatra::Base types.
+
 On your sinatra application:
 
     require 'sinatra/i18n'
 
-    # this is required if you want to assume the default path
-    set :root, File.dirname(__FILE__)
+    # Optional requirements
+    require 'rack/contrib' 
+    require 'i18n/backend/fallbacks'
 
-    # an alternative would be to set the locales path
-    set :locales, File.join(File.dirname(__FILE__), 'config/en.yml')
-  
-    # then just register the extension
+    # Register the extension
     register Sinatra::I18n
 
-
-This works for both the case of a Classic sinatra application and also for Sinatra::Base types.
-
-In your helpers / routes
-------------------------
-
-Once this is done you can go on and use `t` e.g.
-
-    post '/items' do
-      session[:message] = t('items_success')
-      redirect '/items' 
+    # Use browser preference to set locale
+    #  (requires: rack-contrib)
+    use Rack::Locale
+    
+    # Use URL information to set locale
+    before '/:locale/*' do
+        I18n.locale       =       params[:locale]
+	request.path_info = '/' + params[:splat]
     end
 
-    # in your view
-    - if session[:message]
-      = session.delete(:message)
+    # Use hostname information to set locale
+    #  (assume hostname is as: locale.my-website.com)
+    before '/:locale/*' do
+        if (locale = request.host.split('.')[0]) != 'www'
+	    I18n.locale = locale
+	end
+    end    
+
+    # Configure I18n translations
+    # Loading translation files with modified backend
+    #  (requires: i18n/backend/fallbacks)
+    configure
+	I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+        I18n.load_path, Dir[File.join(settings.root, 'locales', '*.yml')]
+        I18n.backend.load_translations
+    end
+
+    # Configure the way templates view will be looked up
+    #  (this is the default configuration)
+    configure
+        set :locales, :lookup => lambda {|path, locale| "#{name}.#{locale}" }
+    end
+
+    # Display a welcome screen with localized information
+    #  - view is displayed according to locale 
+    #    will look for current, default, fallbacks vesion of the view:
+    #        view.fr, view.en, ..., view.jp, view
+    #  - message is translated
+    #  - time is localised
+    get '/welcome' do
+      erb :welcome_screen, locals => { :message => t(:message),
+                                       :time    => l(Time.now) }
+    end
+
+
+
 
 Note on Patches/Pull Requests
 -----------------------------
