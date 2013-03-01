@@ -6,16 +6,28 @@ require 'sinatra/i18n'
 class TestSinatraI18n < Test::Unit::TestCase
     test 'translation for en' do
         i18n_app_result(:en) { t(:'world') }
-        assert body == 'World'
+        assert_equal body, 'World'
     end
 
 
     test 'translation for fr' do
         i18n_app_result(:fr) { t(:'world') }
-        assert body == 'Monde'
+        assert_equal body, 'Monde'
+
     end
 
 
+    test 'template lookup for missing locale' do
+        i18n_app_result(:en) { erb :'welcome' }
+        assert_equal body, 'Hello World'
+    end
+
+    test 'template lookup for locale' do
+        i18n_app_result(:fr) { erb :'welcome' }
+        assert_equal body, 'Bonjour Monde'
+    end
+
+    #----------------------------------------------------------------------
 
     def i18n_app(&block) 
         mock_app do

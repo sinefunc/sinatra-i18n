@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/sdalu/sinatra-i18n.png)](https://travis-ci.org/sdalu/sinatra-i18n)
-
+[![Dependency Status](https://gemnasium.com/sdalu/sinatra-i18n.png)](https://gemnasium.com/sdalu/sinatra-i18n)
 
 sinatra-i18n
 ============

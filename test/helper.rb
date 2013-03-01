@@ -10,7 +10,7 @@ require 'sinatra/base'
 
 
 class Sinatra::Base
-  include Test::Unit::Assertions
+    include Test::Unit::Assertions
 end
 
 
