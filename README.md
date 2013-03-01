@@ -30,12 +30,12 @@ On your sinatra application:
     # Use URL information to set locale
     before '/:locale/*' do
         I18n.locale       =       params[:locale]
-        request.path_info = '/' + params[:splat]
+        request.path_info = '/' + params[:splat ][0]
     end
     
     # Use hostname information to set locale
     #  (assume hostname is as: locale.my-website.com)
-    before '/:locale/*' do
+    before do
         if (locale = request.host.split('.')[0]) != 'www'
             I18n.locale = locale
         end
